@@ -1,0 +1,26 @@
+.search-result{
+    display: 'flex';
+    flex-direction: 'column';
+    max-height: 200px;
+    overflow-y: scroll;
+}
+.individual-recommendation-box{
+    cursor: pointer;
+
+  
+    border-width: 2px;
+    margin-bottom: 10px;
+    padding: 6px;
+    width: 700px;
+   
+}
+.book-results{
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+    margin-bottom: 30px;
+}
+.book-results-summary{
+    margin-left: 20px;
+}
