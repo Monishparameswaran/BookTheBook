@@ -15,7 +15,7 @@ function LoadScreen(){
 }
   
 
-export default function ShowResults({content,startIndex,setStartIndex}){
+export default function ShowResults({content,startIndex,setStartIndex,setContent}){
     const [isLoading,setLoading]=useState(true);
     const [searchContent,setSearchContent]=useState([]);
     const location=useLocation();
@@ -39,7 +39,7 @@ export default function ShowResults({content,startIndex,setStartIndex}){
                 (data)=>{
                 //   console.log(data.items[0].volumeInfo.title);
                  
-                if(startIndex==0){setSearchContent([]);}
+                if(startIndex==0){setSearchContent([]); setContent([]);}
                   data.items.map((item)=>{
                     const obj={
                         id: item.id,

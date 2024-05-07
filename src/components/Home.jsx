@@ -16,6 +16,7 @@ export default function Home({content,setContent,startIndex,setStartIndex}){
          <InputBox content={content} setContent={setContent} autocomplete={autoComplete} setAutoComplete={setAutocomplete} setIsShowRecommendation={setIsShowRecommendation} startIndex={startIndex} setStartIndex={setStartIndex}></InputBox>
     {/* <SearchResults data={autoComplete} isShowRecommendation={isShowRecommendation}></SearchResults> */}
     </div>
+    
   )
    
 }

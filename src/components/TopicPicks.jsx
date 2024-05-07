@@ -3,17 +3,20 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function TopicPicks({setContent}){
+export default function TopicPicks({setContent,pickData}){
     const [picks,setPicks]=useState([]);
-    function getData(){
-        const url=`https://www.googleapis.com/books/v1/volumes?q=stories`
+    const [indexStart,setIndexStart]=useState(0);
+    useEffect(()=>{setIndexStart(0)},[pickData])
+    function getData(pickData){
+      console.log(indexStart);
+        const url=`https://www.googleapis.com/books/v1/volumes?q=${pickData}&startIndex=${indexStart}&maxResults=8`
         fetch(url)
         .then((resp)=>{
             resp.json().then(
                 (data)=>{
                 //   console.log(data.items[0].volumeInfo.title);
                  
-                  setPicks([]); // making sure all the previous data is cleared
+                  if(indexStart==0)setPicks([]); // making sure all the previous data is cleared
                 //   console.log(data);
                   data.items?.map((item)=>{
                     const obj={
@@ -36,11 +39,11 @@ export default function TopicPicks({setContent}){
             );
         })
     }
-    useEffect(()=>{getData();},[]);
+    useEffect(()=>{getData(pickData);},[indexStart,pickData]);
     const list = (
         <div className="grid grid-cols-4 gap-7 ">
           {picks.map((item) => (
-            <div key={item.id} className="grid place-items-center bg-white hover:bg-stone-100 rounded-lg hover:duration-200 hover:border-rose-300 hover:border-4">
+            <div className="grid place-items-center bg-white hover:bg-stone-100 rounded-lg hover:duration-100  hover:border-black hover:border-2  shadow-2xl shadow-blue-500/50">
               <div className="mb-3">
                 <img src={item.imgLink} alt="" className="w-fit h-fit " />
                 
@@ -64,8 +67,10 @@ export default function TopicPicks({setContent}){
             <>
             <div className="ml-16 mr-16">
             <h2 className="font-bold text-2xl mb-10">Top Picks for you</h2>
-        
-             {list}
+            <div className="">
+            {list}
+            </div>
+            <button className="bg-black text-white p-8" onClick={()=>{setIndexStart(indexStart+10)}}>Load More</button>
             </div>
            
             </>

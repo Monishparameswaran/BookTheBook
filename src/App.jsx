@@ -26,7 +26,7 @@ function App() {
         <Route key="home" path='/home' element={<Home content={content} setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex}></Home>} ></Route>
         <Route key="bookthebook" path='/bookthebook' element={<BookTheBook data={content} ></BookTheBook>} ></Route>
         <Route key="about" path="/about" element={<About></About>}></Route>
-         <Route key="/search" path='/search' element={<ShowResults content={content} startIndex={startIndex} setStartIndex={setStartIndex} ></ShowResults >} ></Route>
+         <Route key="/search" path='/search' element={<ShowResults content={content}  setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} ></ShowResults >} ></Route>
          <Route key="about" path='/' element={<About></About>}></Route>
       </Routes>
     </Router>

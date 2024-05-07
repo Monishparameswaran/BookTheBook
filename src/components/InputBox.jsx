@@ -5,22 +5,26 @@ import { ImageCarousal } from "./ImageCarousal";
 import SearchResults from "./SearchResults";
 import { Link } from "react-router-dom";
 import TopicPicks from "./TopicPicks";
+import { SideBar } from "./SideBar";
 import { useEffect } from "react";
 export default function InputBox({content,setContent,autocomplete,setAutoComplete,setIsShowRecommendation,startIndex,setStartIndex}){
     const [fieldData,setFieldData]=useState("");// this temperarily stores the  input box data
     let timeout;
+    const [pickData,setPickData]=useState("stories");
     console.log(startIndex+"from effect");
      // the following is the debouncing logic which call the function at  a delay if it encounters another function call within that time the timeout is reset 
+
+     
     const useDebounce=(e)=>{
         clearTimeout(timeout);
-        timeout=setTimeout(()=>{handleChange(e)},500);
+        timeout=setTimeout(()=>{handleChange(e)},300);
     }
     
     
     function handleChange(e){
         console.log(e.target.value);
         setFieldData(e.target.value);
-        const url=`https://www.googleapis.com/books/v1/volumes?q=${e.target.value}&startIndex=0&maxResults=40`
+        const url=`https://www.googleapis.com/books/v1/volumes?q=${e.target.value}&startIndex=0&maxResults=30`
         fetch(url)
         .then((resp)=>{
             resp.json().then(
@@ -54,14 +58,13 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
     return (
         <div className="bg-rose-100">
             <div >
-            <div className="bg-rose-300 flex  justify-between ">
+            <div className="bg-rose-300 flex  justify-between  shadow-2xl shadow-rose-300/50 ">
             <div className=" bg-rose-300 h-32 w-1/2 flex flex-1 flex-row min-w-96 items-end ml-24">
-            
-            <div className="bg-blue-400 h-32 w-32 " >
+            <div className="bg-blue-400 h-32 w-32 -ml-10 mr-24 shadow-2xl" >
                 <img src="src/assets/Yellow and Pink Gradient Modern Technology Logo.png" alt="" onClick={()=>{}}/>
             </div>
             <div className="w-1/2 flex ">
-                <input type="text" className="h-11 text-lg p-5  bg-grey mb-1 ml-4 w-full rounded-lg" placeholder="search" onChange={useDebounce}/>
+                <input type="text" className="h-11 text-lg p-5  bg-grey mb-1 ml-4 w-full rounded-lg" placeholder="Search 130+ Million books" onChange={useDebounce}/>
                 
                 {/* */}
                 <Link to={`/search?input=${fieldData}`}>
@@ -85,7 +88,7 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             <div className="bg-rose-300 p-4 text-lg">Contact</div>
             </div>
             
-            <div className="ml-64  w-1/2 h-48 overflow-y-auto ">
+            <div className="ml-72  w-1/2 h-48 overflow-y-auto ">
            <SearchResults data={autocomplete}></SearchResults> 
            </div>
            </div>
@@ -93,8 +96,14 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             <ImageCarousal />
             </div>
             */}
-          
-          <TopicPicks setContent={setContent}></TopicPicks>
+            <div className="flex">
+              <SideBar setPickData={setPickData}></SideBar>
+            <div className="flex-grow">
+            <TopicPicks setContent={setContent} pickData={pickData}></TopicPicks>
+            </div>
+           
+            </div>
+            
         </div>
         
     );
