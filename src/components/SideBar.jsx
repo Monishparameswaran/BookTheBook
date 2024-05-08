@@ -14,7 +14,7 @@ export function SideBar({setPickData}){
 
     const listItems=menu.map((data)=>(
         
-          <ul className="m-4 cursor-pointer h-8 w-fit pt-1 pb-4 pl-8 pr-8 rounded-lg hover:bg-emerald-50 " onClick={()=>{setPickData(data.genre)}}>
+          <ul className="m-4 cursor-pointer h-8 w-fit pt-1 pb-4 pl-8 pr-8 rounded-lg hover:bg-emerald-50 hover:"  onClick={()=>{setPickData(data.genre)}}>
             <li key={data.id}>{data.genre}</li>
           </ul>
         
