@@ -43,7 +43,7 @@ export default function TopicPicks({setContent,pickData}){
     const list = (
         <div className="grid grid-cols-4 gap-7 ">
           {picks.map((item) => (
-            <div className="grid place-items-center bg-white hover:bg-stone-100 rounded-lg hover:duration-100  hover:border-black hover:border-2  shadow-2xl shadow-blue-500/50">
+            <div className="grid place-items-center bg-white hover:bg-stone-100 rounded-lg  hover:border-black hover:border-2 hover:duration-100 shadow-2xl shadow-blue-500/50">
               <div className="mb-3">
                 <img src={item.imgLink} alt="" className="w-fit h-fit " />
                 
@@ -70,9 +70,11 @@ export default function TopicPicks({setContent,pickData}){
             <div className="">
             {list}
             </div>
-            <button className="bg-black text-white p-8" onClick={()=>{setIndexStart(indexStart+10)}}>Load More</button>
+            <div className="flex justify-center mt-10 mb-8">
+            <button className="bg-black text-white p-8 rounded-lg hover:text-black hover:bg-white hover:transition hover:duration-700" onClick={()=>{setIndexStart(indexStart+10)}}>Load More</button>
             </div>
-           
+            
+            </div>
             </>
         )
 }
