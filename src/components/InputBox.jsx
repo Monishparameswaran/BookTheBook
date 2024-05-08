@@ -70,7 +70,7 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
                 <Link to={`/search?input=${fieldData}`}>
                 <button className="bg-white not-italic text-white pb-2 p-3   -ml-14 hover:bg-rose-200 hover:rounded-3xl" o>
 
-                    <img src="https://supersimple.dev/public/img/exercises/youtube/icons/search.svg" alt="" className="h-6 w-6 rounded-lg " onClick={()=>{setStartIndex(0);console.log("i done");}}/>
+                    <img src="https://supersimple.dev/public/img/exercises/youtube/icons/search.svg" alt="" className="h-6 w-6 rounded-lg " onClick={async()=>{ await setStartIndex(0);}}/>
                 </button>
                 </Link>
                
@@ -87,9 +87,10 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             </div>
             <div className="bg-rose-300 p-4 text-lg">Contact</div>
             </div>
-            
+             
             <div className="ml-72  w-1/2 h-48 overflow-y-auto ">
            <SearchResults data={autocomplete}></SearchResults> 
+             <div className="ml-72 mt-24 italic  text-lg">"Unlock the universe with the turn of a page."</div>
            </div>
            </div>
             {/* <div className="mt-0 bg-black" >
@@ -99,6 +100,7 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             <div className="flex">
               <SideBar setPickData={setPickData}></SideBar>
             <div className="flex-grow">
+               
             <TopicPicks setContent={setContent} pickData={pickData}></TopicPicks>
             </div>
            
