@@ -1,6 +1,6 @@
 import React from "react";
 import {redirect, useLocation} from 'react-router-dom'
-export default function BookTheBook({data}){
+export default function BookTheBook({data,data1}){
     // const location=useLocation();
     // const searchParams=new URLSearchParams(location.search);
     // const id=searchParams.get('id');
@@ -20,16 +20,28 @@ export default function BookTheBook({data}){
 
     // console.log(data);
     // console.log(id);
-
-    const item=data.filter((item)=>{
+    let item;
+    
+    if(data1.length>0){
+        console.log(data1);
+        item=data1.filter((item)=>{
+            return item.id===id;
+        });
+    }else{
+        item=data.filter((item)=>{
         return item.id===id;
     });
+   }
     
     console.log(item);
     return (
         <>
-        <div><h1 className="grid place-items-center capitalize bg-black text-white h-48 text-2xl hover:text-3xl">Own Your Book through 'Book The Book'</h1> </div>
-        <div className="flex flex-row justify-between mt-10 bg-rose-300 ml-20">
+        <div className="bg-rose-200 h-full">
+        <div className="bg-black flex shadow-2xl">
+            <img src="src/assets/Yellow and Pink Gradient Modern Technology Logo.png" className="h-32 w-32 shadow-lg ml-10 mt-5 shadow-cyan-500/50 " alt="" />
+            <h1 className="grid place-items-center capitalize bg-black text-white h-48 text-2xl hover:text-3xl font-sans mt-8 ml-5 ">We consider empathy!</h1>
+        </div>
+        <div className="flex flex-row justify-between mt-10 bg-rose-300 ml-20 mr-10 ackdrop-blur-md bg-white/30 shadow-lg shadow-cyan-500/50">
             <div>
 
             </div>
@@ -93,6 +105,8 @@ export default function BookTheBook({data}){
                
             </div> */}
         </div>
+        </div>
+        
         </>
         
     )

@@ -15,9 +15,9 @@ function LoadScreen(){
 }
   
 
-export default function ShowResults({content,startIndex,setStartIndex,setContent}){
+export default function ShowResults({content,startIndex,setStartIndex,setContent,searchContent,setSearchContent}){
     const [isLoading,setLoading]=useState(true);
-    const [searchContent,setSearchContent]=useState([]);
+    
     const location=useLocation();
     const searchParams=new URLSearchParams(location.search);
     const inputData=searchParams.get('input'); // i m getting data from the URL about the fetch data
@@ -71,7 +71,10 @@ export default function ShowResults({content,startIndex,setStartIndex,setContent
     const listItems=searchContent.map((data)=>(
 
         <div id={data.id} className="bg-stone-100 m-10 ml-32 book-results ">
-                <img src={data.imgLink}  alt="book image" className="h-94 w-fit" />
+                
+                 <img src={data.imgLink}  alt="book image" className="h-72 w-48" />
+        
+               
                 <div className="book-results-summary">
                     {/* <div><h1 style={{cursor: 'pointer'}}onClick={()=>{customRedirectPage(data)}}>{data.title}</h1></div> */}
                     <Link to={`/bookthebook?id=${data.id}`}>

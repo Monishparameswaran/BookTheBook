@@ -14,6 +14,7 @@ function App() {
   
   const defferedText=useDeferredValue(text);
   const [content,setContent]=useState([]);
+  const [searchContent,setSearchContent]=useState([]);
   const [startIndex,setStartIndex]=useState(0); // this is used in the results displaying page to introduce infinite scrollin
   return (
     <div>
@@ -24,9 +25,9 @@ function App() {
      
       <Routes>
         <Route key="home" path='/home' element={<Home content={content} setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex}></Home>} ></Route>
-        <Route key="bookthebook" path='/bookthebook' element={<BookTheBook data={content} ></BookTheBook>} ></Route>
+        <Route key="bookthebook" path='/bookthebook' element={<BookTheBook data={searchContent} data1={content}></BookTheBook>} ></Route>
         <Route key="about" path="/about" element={<About></About>}></Route>
-         <Route key="/search" path='/search' element={<ShowResults content={content}  setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} ></ShowResults >} ></Route>
+         <Route key="/search" path='/search' element={<ShowResults content={content}  setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} searchContent={searchContent} setSearchContent={setSearchContent}></ShowResults >} ></Route>
          <Route key="about" path='/' element={<About></About>}></Route>
       </Routes>
     </Router>
