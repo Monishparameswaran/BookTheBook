@@ -69,38 +69,42 @@ export default function ShowResults({content,startIndex,setStartIndex,setContent
         
     }
     const listItems=searchContent.map((data)=>(
-
-        <div id={data.id} className="bg-stone-100 m-10 ml-32 book-results ">
+        data.title && data.author && data.imgLink && data.description && ( <div id={data.id} className="bg-stone-100 m-10 ml-32 book-results ">
                 
-                 <img src={data.imgLink}  alt="book image" className="h-72 w-48" />
-        
-               
-                <div className="book-results-summary">
-                    {/* <div><h1 style={{cursor: 'pointer'}}onClick={()=>{customRedirectPage(data)}}>{data.title}</h1></div> */}
-                    <Link to={`/bookthebook?id=${data.id}`}>
+        <img src={data.imgLink}  alt="book image" className="h-72 w-48" />
 
-                        <div className="text underline underline-offset-8 capitalize md:uppercase italic hover:uppercase md:not-italic text-blue-500">
-                        <h1>{data.title}</h1>
-                        </div>
-                    </Link>
-                    <div className="mt-5 mb-3"><h4 className="font-bold">Author:  {data.author} </h4></div>
-                    <div>
-                    <h5 className="font-medium">Description</h5>
-                    <p className="w-9/12">
-                        {data.description}
-                    </p>
-                    </div>
-                </div>
+      
+       <div className="book-results-summary">
+           {/* <div><h1 style={{cursor: 'pointer'}}onClick={()=>{customRedirectPage(data)}}>{data.title}</h1></div> */}
+           <Link to={`/bookthebook?id=${data.id}`}>
+
+               <div className="text underline underline-offset-8 capitalize md:uppercase italic hover:uppercase md:not-italic text-blue-500">
+               <h1>{data.title}</h1>
+               </div>
+           </Link>
+           <div className="mt-5 mb-3"><h4 className="font-bold">Author:  {data.author} </h4></div>
+           <div>
+           <h5 className="font-medium">Description</h5>
+           <p className="w-9/12">
+               {data.description}
+           </p>
+           </div>
        </div>
+</div>)
+       
     ));
     return (
         <div className="bg-rose-100">
             <h1 className="ml-24 mt-8 text-lg font-medium">Search Results</h1>
             {isLoading && <LoadScreen></LoadScreen> }
-            {!isLoading && <div>
+            {!isLoading && listItems && <div>
                 {listItems}
             </div> }
-            <button onClick={()=>{setStartIndex(startIndex+20);console.log(startIndex);}} className="bg-black text-white">Load more</button>
+          
+
+            <div className="flex justify-center mt-10 mb-8">
+            <button onClick={()=>{setStartIndex(startIndex+20);console.log(startIndex);}} className="bg-black text-white p-8 rounded-lg hover:text-black hover:bg-white hover:transition hover:duration-700">Load more</button>
+            </div>
         </div>
     )
 }
