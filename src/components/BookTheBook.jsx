@@ -38,7 +38,7 @@ export default function BookTheBook({data,data1}){
         <>
         <div className="bg-rose-200 h-full">
         <div className="bg-black flex shadow-2xl">
-            <img src="./src/assets/Yellow and Pink Gradient Modern Technology Logo.png" className="h-32 w-32 shadow-lg ml-10 mt-5 shadow-cyan-500/50 " alt="" />
+            <img src="../src/assets/Yellow and Pink Gradient Modern Technology Logo.png" className="h-32 w-32 shadow-lg ml-10 mt-5 shadow-cyan-500/50 " alt="" />
             <h1 className="grid place-items-center capitalize bg-black text-white h-48 text-2xl hover:text-3xl font-sans mt-8 ml-5 ">We consider empathy!</h1>
         </div>
         <div className="flex flex-row justify-between mt-10 bg-rose-300 ml-20 mr-10 backdrop-blur-md bg-white/30 shadow-lg shadow-cyan-500/50">

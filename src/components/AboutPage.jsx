@@ -9,7 +9,7 @@ export default function About(){
             <div className="bg-blue-400 h-32 w-32">
                 <img src="src/assets/Yellow and Pink Gradient Modern Technology Logo.png" alt="" />
             </div> */}
-            <div className="mt-0"><img src="./src/assets/Yellow and Pink Gradient Modern Technology Logo.png" alt=""className="h-32 w-32 " /></div>
+            <div className="mt-0"><img src="../src/assets/Yellow and Pink Gradient Modern Technology Logo.png" alt=""className="h-32 w-32 " /></div>
             <div className="h-4/5 w-full mt-10  bg-rose-200 flex justify-between ">
                 <div>
                 <div className="ml-0">  <h1 className="text-6xl text-black ml-2">Searching Made Easy</h1></div>
@@ -27,7 +27,7 @@ export default function About(){
                 </div>
                 </div>
                 
-                <img src="./src/assets/BookCover.png" alt="" className="h-fit w-fit =" />
+                <img src="../src/assets/BookCover.png" alt="" className="h-fit w-fit =" />
                
             </div>
            
