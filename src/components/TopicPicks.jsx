@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function TopicPicks({setContent,pickData}){
     const [picks,setPicks]=useState([]);
     const [indexStart,setIndexStart]=useState(0);
+    const [loadMore,setLoadMore]=useState("Load More");
     useEffect(()=>{setIndexStart(0)},[pickData])
     function getData(pickData){
       console.log(indexStart);
@@ -71,7 +72,7 @@ export default function TopicPicks({setContent,pickData}){
             {list}
             </div>
             <div className="flex justify-center mt-10 mb-8">
-            <button className="bg-black text-white p-8 rounded-lg hover:text-black hover:bg-white hover:transition hover:duration-700" onClick={()=>{setIndexStart(indexStart+10)}}>Load More</button>
+            <button className="bg-black p-5 pl-16 pr-16 rounded-full text-white hover:text-black hover:bg-white hover:transition hover:duration-700" onClick={()=>{setIndexStart(indexStart+10);setLoadMore("Loading...");setTimeout(()=>{setLoadMore("Load More")},1700);}}>{loadMore}</button>
             </div>
             
             </div>

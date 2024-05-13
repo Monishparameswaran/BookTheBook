@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function SearchResults({data}) {
+export default function SearchResults({data,setSearchContent}) {
     // this component is responsible for displaying the pop recommendeted book box while searching 
 
     // function handleClick(){
@@ -8,7 +8,7 @@ export default function SearchResults({data}) {
     // }
     const listItems = data.map((item) => (
         <Link to={`/search?input=${item}`}>
-             <div className="font-normal hover:font-medium bg-gray-100 individual-recommendation-box" onClick={()=>{console.log("You will Achieve");}}>
+             <div className="font-normal hover:font-medium bg-gray-100 individual-recommendation-box" onClick={()=>{console.log("You will Achieve");setSearchContent([]);}}>
             {item}
            
             </div>     

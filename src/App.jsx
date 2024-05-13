@@ -24,7 +24,7 @@ function App() {
     
      
       <Routes>
-        <Route key="home" path='/home' element={<Home content={content} setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex}></Home>} ></Route>
+        <Route key="home" path='/home' element={<Home content={content} setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} searchContent={searchContent} setSearchContent={setSearchContent}></Home>} ></Route>
         <Route key="bookthebook" path='/bookthebook' element={<BookTheBook data={searchContent} data1={content}></BookTheBook>} ></Route>
         <Route key="about" path="/about" element={<About></About>}></Route>
          <Route key="/search" path='/search' element={<ShowResults content={content}  setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} searchContent={searchContent} setSearchContent={setSearchContent}></ShowResults >} ></Route>

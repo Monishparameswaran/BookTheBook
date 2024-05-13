@@ -6,7 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 function LoadScreen(){
-   
+    
     return(
         <div className="ml-32 mt-3 w-4/5">
                 <Skeleton count={16}  duration={1.5} height={50} borderRadius={100}  baseColor="pink"/> 
@@ -85,25 +85,31 @@ export default function ShowResults({content,startIndex,setStartIndex,setContent
            <div className="mt-5 mb-3"><h4 className="font-bold">Author:  {data.author} </h4></div>
            <div>
            <h5 className="font-medium">Description</h5>
-           <p className="w-9/12">
+           <p className="w-9/12 max-h-32 overflow-scroll">
                {data.description}
            </p>
+           <div className="mt-4 mb-4">
+            <Link to={`/bookthebook?id=${data.id}`}>
+                <button className="bg-bg-rose-500 p-3 pl-4 pr-4 text-white rounded-full bg-rose-600 hover:text-white hover:bg-rose-800 hover:duration-700">Click to Explore More  &gt;&gt;</button>
+            </Link>
+            
+           </div>
            </div>
        </div>
 </div>)
        
     ));
     return (
-        <div className="bg-rose-100">
+        <div className="bg-blend-lighten h-screen">
             <h1 className="ml-24 mt-8 text-lg font-medium">Search Results</h1>
             {isLoading && <LoadScreen></LoadScreen> }
-            {!isLoading && listItems && <div>
+            {!isLoading && listItems && <div className="">
                 {listItems}
             </div> }
           
 
-            <div className="flex justify-center mt-10 mb-8">
-            <button onClick={()=>{setStartIndex(startIndex+20);console.log(startIndex);}} className="bg-black text-white p-8 rounded-lg hover:text-black hover:bg-white hover:transition hover:duration-700">Load more</button>
+            <div className="flex justify-center mt-8 mb-10">
+            <button onClick={()=>{setStartIndex(startIndex+20);console.log(startIndex);}} className="bg-black text-white p-5 pl-16 pr-16 rounded-full hover:text-black hover:bg-white hover:transition hover:duration-700">Load more</button>
             </div>
         </div>
     )
