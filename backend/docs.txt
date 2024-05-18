@@ -1,0 +1,9 @@
+Information about what this code base 
+ Author : MonishParameswaran
+
+ This node js backend application serves seamlessly to get the user data through the post request and store it to the mongoDB instance in case of user has not signed in previously, in case of any errors due to "user already exist" or error in connection to MongoDB corresponding Error msg is responded along with the status code
+
+ app.get("/login");
+   this finds the user credentials in the mongoDB incase of mismatch it is notified through the response code.on successful validation,a JWt token is generated and send as a response along with the other necessary data fields and status code.
+
+   noteably to prevent the Cross Site scripting i wrote a custom middle ware to do the input validation that prevents server from getting infected due to invalid data format.  
