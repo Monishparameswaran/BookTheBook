@@ -11,6 +11,8 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
     const [fieldData,setFieldData]=useState("");// this temperarily stores the  input box data
     let timeout;
     const [pickData,setPickData]=useState("stories");
+    const [isToken,setIsToken]=useState(true);
+    const [username,setUserName]=useState("");
     console.log(startIndex+"from effect");
      // the following is the debouncing logic which call the function at  a delay if it encounters another function call within that time the timeout is reset 
 
@@ -20,7 +22,9 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
         timeout=setTimeout(()=>{handleChange(e)},300);
     }
     
-    
+    useEffect(()=>{
+      setUserName(localStorage.getItem('userName'));
+    },[]);
     function handleChange(e){
         console.log(e.target.value);
         setFieldData(e.target.value);
@@ -83,10 +87,11 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
              
             </div>
             <div className="bg-rose-300 p-4 text-lg">
-               <Link to="http://localhost:5173/signup">
+              { !username && <Link to="http://localhost:5173/signup">
                <button className="p-2 pl-6 pr-6 rounded-3xl bg-rose-500 border-red-solid 
               hover:bg-red-700 text-white">SignUp/LogIn</button>
-               </Link>
+               </Link>} 
+               {username && <div className="mt-3 ">Welcome {username} !</div>}
               
             </div>
             <div className="bg-rose-300 p-4 text-lg">

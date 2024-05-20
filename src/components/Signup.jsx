@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useState ,useEffect} from "react";
 import axios from "axios";
+import { redirect, useNavigate } from "react-router-dom";
 export default function SignUp(){
     const [fullName,setFullName]=useState("");
     const [password,setPassword]=useState("");
@@ -13,6 +14,7 @@ export default function SignUp(){
     const [userFound,setUserFound]=useState(true);
     const [gate,setGate]=useState(false);
     const [logIn,setLogIn]=useState("Log In");
+    const navigate=useNavigate();
         function handleSignUp(){
             const header={
                 fullname: fullName,
@@ -53,9 +55,13 @@ export default function SignUp(){
                         console.log(obj.data.token);
                         const token=obj.data.token;
                         localStorage.setItem('token',token);
+                        localStorage.setItem('userName',obj.data.username);
                         console.log("token is:" +localStorage.getItem('token'));
                         setGate(true);
                         setLogIn("Hold on,Logging In");
+                        setTimeout(()=>{
+                            navigate("/home");
+                        },3000);
                     }
                 }
             )

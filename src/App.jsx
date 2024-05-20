@@ -8,6 +8,7 @@ import BookTheBook from './components/BookTheBook'
 import Home from './components/Home'
 import ShowResults from './components/ShowResults'
 import About from './components/AboutPage'
+import SignUp from './components/Signup'
 
 function App() {
   const [text,setText]=useState(null); 
@@ -21,9 +22,8 @@ function App() {
      
     <Router>
       
-    
-     
       <Routes>
+        <Route key="signup" path="/signup" element={<SignUp></SignUp>}></Route>
         <Route key="home" path='/home' element={<Home content={content} setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} searchContent={searchContent} setSearchContent={setSearchContent}></Home>} ></Route>
         <Route key="bookthebook" path='/bookthebook' element={<BookTheBook data={searchContent} data1={content}></BookTheBook>} ></Route>
         <Route key="about" path="/about" element={<About></About>}></Route>
