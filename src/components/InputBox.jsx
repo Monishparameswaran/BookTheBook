@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 import TopicPicks from "./TopicPicks";
 import { SideBar } from "./SideBar";
 import { useEffect } from "react";
+import DropDownUser from "./DropdownUser";
 export default function InputBox({content,setContent,autocomplete,setAutoComplete,setIsShowRecommendation,startIndex,setStartIndex,setSearchContent}){
     const [fieldData,setFieldData]=useState("");// this temperarily stores the  input box data
     let timeout;
     const [pickData,setPickData]=useState("stories");
     const [isToken,setIsToken]=useState(true);
     const [username,setUserName]=useState("");
+    const [canDrop,setCanDrop]=useState(false);
     console.log(startIndex+"from effect");
      // the following is the debouncing logic which call the function at  a delay if it encounters another function call within that time the timeout is reset 
 
@@ -91,7 +93,11 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
                <button className="p-2 pl-6 pr-6 rounded-3xl bg-rose-500 border-red-solid 
               hover:bg-red-700 text-white">SignUp/LogIn</button>
                </Link>} 
-               {username && <div className="mt-3 ">Welcome {username} !</div>}
+               {username && <div className="mt-3 hover:cursor-pointer drop" onClick={()=>{setCanDrop(!canDrop)}}>Welcome {username} !
+               {canDrop && <DropDownUser setUserName={setUserName}></DropDownUser>}
+               </div>
+                 
+               }
               
             </div>
             <div className="bg-rose-300 p-4 text-lg">
