@@ -2,11 +2,12 @@ const express=require('express');
 const cors=require('cors');
 const app=express();
 const {schema}=require("./type");
+const {transporter}=require("./sendMail");
 const {User}=require("./db/user"); // importing the database mongoose model
 const jwt=require('jsonwebtoken');
 app.use(express.json());
 app.use(cors());
-
+let store={};
 const JWT_SECRET="monishParameswara124"
 app.get("/home",function(req,res){
     res.json({msg: "hello monish"});
@@ -87,6 +88,32 @@ app.get("/login",inputValidateMiddlewareLogin,async function(req,res){
         res.status(200).json({status: "200",username: response.fullname,mail: response.email,msg: "Welcome "+response.fullname,
     token: token});
     }
+});
+
+
+app.post("/sendotp",function(req,res){
+    const email=req.headers.email;
+    const otp = Math.floor(100000 + Math.random() * 900000).toString(); // Generate 6-digit OTP
+    const expiration = Date.now() + 5 * 60 * 1000; // OTP valid for 5 minutes
+    store[email]={otp,expiration};
+     console.log("From send otp"+" "+email);
+    const options={
+        from: "monish.devping@gmail.com",
+        to: email,
+        subject: "OTP for Verification from BookTheBook",
+        html: `<h2>BookTheBook</h2><p>Welcome you are just 1 step ahead from exploring the Universe of Books ,Please enter the following OTP in the application within the time of expiry,We take atmost care in securing your data- Team BookTheBook</p>
+         <h3>Enter the following OTP within 5 minutes,6 Digit-OTP: ${otp}</h3> 
+        `,
+        
+
+    }
+    transporter.sendMail(options,function(err,info){
+        if(err){console.log(err);}
+        else{
+            res.status(200).json({otp: otp});
+            console.log(info);
+        }
+    });
 });
 console.log("Server started at: 3000");
 app.listen(3000);
