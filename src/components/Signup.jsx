@@ -14,7 +14,22 @@ export default function SignUp(){
     const [userFound,setUserFound]=useState(true);
     const [gate,setGate]=useState(false);
     const [logIn,setLogIn]=useState("Log In");
+    const [otpSection,setOtpSection]=useState(false);
+    const [otpData,setOtpData]=useState(0);
+    const [serverOTP,setServerOTP]=useState(0);
+    const [otpMatches,setOTPMatches]=useState(false);
+    const [invalidOTP,setInvalidOTP]=useState(false);
     const navigate=useNavigate();
+
+        function sendOTP(){
+            const headerMail={email: email}
+            axios.post("http://localhost:3000/sendotp",null,{headers: headerMail})
+                    .then((resp)=>{
+                        setServerOTP(resp.data.otp);
+                    })
+                    .catch((err)=>{console.log(err);})
+        }
+        
         function handleSignUp(){
             const header={
                 fullname: fullName,
@@ -27,6 +42,11 @@ export default function SignUp(){
                 (obj)=>{setUserExist(false);
                     setInvalid(false);
                     setUserCreation(true);
+
+                    setTimeout(()=>{setOtpSection(true);},2000);
+                   
+                    console.log(email+" "+"email");
+                    sendOTP();
                     console.log(obj.data);}
             ).catch((err)=>{console.log(err.response.data);
                 const status=err.response.data.status;
@@ -36,6 +56,16 @@ export default function SignUp(){
                 else if(status==="501"){setInvalid(true);}
                 console.log("something went wrong at handleSignup");
             })     // console.log(resp)
+        }
+
+        function verifyOTP(){
+            if(serverOTP===otpData){setOTPMatches(true);
+            setInvalidOTP(false);
+            setTimeout(()=>{setIsLogin(true)},3000);}
+            else{
+                setInvalidOTP(true);
+                console.log("sorry OTP did not match");
+            }
         }
         function handleLogIn(e){
             const url="http://localhost:3000/login"; //  this our backend url that accepts get request
@@ -90,7 +120,7 @@ export default function SignUp(){
                  <div className="bg-green-500 min-h-48 w-56  ml-16 ">
                  <img src="../src/assets/Yellow and Pink Gradient Modern Technology Logo.png" className="h-48 w-48 rounded-2xl"></img>
                  </div>
-        { !isLogin &&
+        { !isLogin && !otpSection &&
                 <div className="bg-white h-full  w-full pl-16 pt-16">
                     <div className=" h-full ">
                         <h1 className="font-mono font-family-Menlo text-xl font-bold subpixel-antialiased">Welcome Monks!</h1>
@@ -116,9 +146,20 @@ export default function SignUp(){
 
                     </div>            
                  </div>}
-                
-
-
+                 {otpSection && !isLogin && <div  className="bg-white h-full  w-full pl-16 pt-16">
+                    <div className="text-2xl font-bold ">OTP Verification</div>
+                    <div className="ml-4 mt-3 mr-3"> We have send a OTP to your mail <strong>{email}</strong> ,please enter the OTP before it gets expires  </div>
+                    <div className="mt-16">
+                    <div className="ml-6">Enter OTP</div>
+                    <div className="m-6"><input type="text" className="w-2/3 p-4 rounded-xl border border-gray-500 hover:border-gray-300 font-light" placeholder="6-Digit-OTP" onBlur={(e)=>{setOtpData(e.target.value);}}/></div>
+                    {otpMatches && <div className="m-5 text-green-600">OTP validation Success,Please Login to Continue...</div> }
+                    {invalidOTP && <div className="m-5 text-red-600">Invalid OTP !</div> }
+                    <button className="bg-rose-500 p-4 ml-6 rounded-xl w-1/3  text-white hover:bg-rose-700" onClick={()=>{verifyOTP()}} >Verify OTP</button>
+                    <button className="bg-slate-100 p-4 ml-6 rounded-xl w-1/3  text-black border-black hover:bg-slate-200" onClick={()=>{sendOTP()}}>Resend OTP</button>
+                    </div>
+                    </div>
+                   
+                 }
                  {isLogin && 
 
                   <div className="bg-white h-full  w-full pl-16 pt-16">
