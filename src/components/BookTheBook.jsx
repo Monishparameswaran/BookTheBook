@@ -48,17 +48,17 @@ export default function BookTheBook({data,data1}){
             <div>
                 <div className="flex flex-col">
                 <div>
-                <div className="mt-5 mb-3 "><h4 className="font-bold">Author:  {item[0].author} </h4></div>
+                <div className="mt-5 mb-3 "><h4 className="font-bold">Author:  {item[0]?.author} </h4></div>
                 </div>
                 <div>
                 <h5 className="font-semibold">Description</h5>
                     <p className="w-96 mt-1">
-                        {item[0].description}
+                        {item[0]?.description}
                     </p>
                 </div>
 
                 <div>{
-                (item[0].rating)?<h4 className="mt-2 mb-3 font-bold">Rating {item[0]?.rating}</h4>:null
+                (item[0]?.rating)?<h4 className="mt-2 mb-3 font-bold">Rating {item[0]?.rating}</h4>:null
                 }</div>
 
            <div>{

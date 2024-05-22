@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MyCart from "./MyCart";
 
 export function SideBar({setPickData}){
 
@@ -23,8 +24,11 @@ export function SideBar({setPickData}){
         <div className="h-svh w-56 bg-rose-300 -mt-48  shadow-2xl">
             <div className="flex flex-col justify-between items-center mt-8">
             {listItems}
+            <Link to="/mycart">
+            <div className="mt-12 "><button className="p-4 pl-8 pr-8 bg-black rounded-full text-white  w-full">My Book Shelf</button></div>
+            </Link>
             </div>
-            
+           
         </div>
     )
 }

@@ -47,7 +47,6 @@ export default function TopicPicks({setContent,pickData}){
             <div className="grid place-items-center bg-white hover:bg-stone-100 rounded-lg  hover:border-black hover:border-2 hover:duration-100 shadow-2xl shadow-blue-500/50">
               <div className="mb-3">
                 <img src={item.imgLink} alt="" className="w-fit h-fit " />
-                
               </div>
               <div>
               <h3>{item.author}</h3>

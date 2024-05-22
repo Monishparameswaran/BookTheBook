@@ -10,7 +10,7 @@ export default function SignUp(){
     const [userExist,setUserExist]=useState(false);
     const [userCreation,setUserCreation]=useState(false);
     const [canPost,setCanPost]=useState(false);
-    const [isLogin,setIsLogin]=useState(false);
+    const [isLogin,setIsLogin]=useState(false); // used in conditional rendering to avoid rendering of signup ,login page simulaneaously
     const [userFound,setUserFound]=useState(true);
     const [gate,setGate]=useState(false);
     const [logIn,setLogIn]=useState("Log In");
@@ -18,8 +18,8 @@ export default function SignUp(){
     const [otpData,setOtpData]=useState(0);
     const [serverOTP,setServerOTP]=useState(0);
     const [otpMatches,setOTPMatches]=useState(false);
-    const [invalidOTP,setInvalidOTP]=useState(false);
-    const navigate=useNavigate();
+    const [invalidOTP,setInvalidOTP]=useState(false); 
+    const navigate=useNavigate();  // used to navigate to the home page upon validation
 
         function sendOTP(){
             const headerMail={email: email}
