@@ -9,6 +9,7 @@ import Home from './components/Home'
 import ShowResults from './components/ShowResults'
 import About from './components/AboutPage'
 import SignUp from './components/Signup'
+import MyCart from './components/MyCart'
 
 function App() {
   const [text,setText]=useState(null); 
@@ -29,6 +30,8 @@ function App() {
         <Route key="about" path="/about" element={<About></About>}></Route>
          <Route key="/search" path='/search' element={<ShowResults content={content}  setContent={setContent} startIndex={startIndex} setStartIndex={setStartIndex} searchContent={searchContent} setSearchContent={setSearchContent}></ShowResults >} ></Route>
          <Route key="about" path='/' element={<About></About>}></Route>
+
+         <Route key="cart" path='/mycart' element={<MyCart></MyCart>}></Route>
       </Routes>
     </Router>
      
