@@ -7,8 +7,9 @@ export default function useMyCart(){
 
     useEffect(()=>{
         let data;
-        if(localStorage.getItem("cart")){
-            data=JSON.parse(localStorage.getItem("cart"));
+        if(localStorage.getItem("cart")!='[]'){
+            const localData=localStorage.getItem("cart");
+            data=JSON.parse(localData);
         }
         
          // appending the current product details to arr
@@ -16,14 +17,25 @@ export default function useMyCart(){
             let arr=[productDetails]
             localStorage.setItem("cart",JSON.stringify(arr));}
         else if(!isRemove && data){ 
-            let arr=[...data,productDetails];
-            arr=arr.filter((obj)=>{if(obj && obj.id!=data.id){return true}else{return false;}});
-            localStorage.setItem("cart",JSON.stringify(arr));}
-        else if(data){
-            const productId=productDetails.id;
-            let val=data.filter((obj)=>{if(obj.id!=productId && obj.title!=productDetails.title){return true;}else{return false;}});
-            localStorage.setItem("cart",JSON.stringify(val));
-        }
+            let arr;
+            
+            arr=[...data,productDetails];
+            console.log(data);
+            console.log(arr);
+            // let ans=arr.filter((obj)=>{if(obj && obj.id!=data.id){return true}else{return false;}});
+            let ans=arr.reduce((acc,curr)=>{
+                let X=acc.find((item)=>{return item.id===curr.id});
+                if(!X){
+                    acc.push(curr);
+                }
+                return acc;
+            },[]);
+            localStorage.setItem("cart",JSON.stringify(ans));}
+        // else if(data){
+        //     const productId=productDetails.id;
+        //     let val=data.filter((obj)=>{if(obj.id!=productId && obj.title!=productDetails.title){return true;}else{return false;}});
+        //     localStorage.setItem("cart",JSON.stringify(val));
+        // }
        
     },[productDetails]);
 
