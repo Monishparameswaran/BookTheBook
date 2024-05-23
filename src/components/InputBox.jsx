@@ -90,8 +90,8 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             </div>
             <div className="bg-rose-300 p-4 text-lg">
               { !username && <Link to="http://localhost:5173/signup">
-               <button className="p-2 pl-6 pr-6 rounded-3xl bg-rose-500 border-red-solid 
-              hover:bg-red-700 text-white">SignUp/LogIn</button>
+               <button className="p-2 pl-6 pr-6 rounded-3xl bg-white border-red-solid 
+               text-rose-800 text-lg font-sans font-medium hover:bg-gray-100 hover: border-rose-600 hover:border-2">SignUp / LogIn</button>
                </Link>} 
                {username && <div className="mt-3 hover:cursor-pointer drop" onClick={()=>{setCanDrop(!canDrop)}}>Welcome {username} !
                {canDrop && <DropDownUser setUserName={setUserName}></DropDownUser>}
@@ -103,12 +103,12 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             <div className="bg-rose-300 p-4 text-lg">
                 <Link to="/about">
                  
-                  <button className="p-2 pl-6 pr-6 border-black border-2 text-black hover:bg-white rounded-lg hover:transition hover:duration-700">About</button>
+                  <button className="p-1 pl-6 pr-6 border-black border-2 text-black hover:bg-white rounded-lg hover:transition hover:duration-700">About</button>
                 </Link>
             </div>
             <div className="bg-rose-300 p-4 text-lg">
               <Link to="https://github.com/Monishparameswaran" target="_blank">
-              <button className="p-2 pl-6 pr-6 bg-black text-white border-2 hover:transition hover:duration-700 hover:bg-white  hover:text-black rounded-lg">Contact</button>
+              <button className="p-1 pl-6 pr-6 bg-black text-white border-2 hover:transition hover:duration-700 hover:bg-white  hover:text-black rounded-lg">Contact</button>
               </Link>
               
             </div>
