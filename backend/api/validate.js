@@ -3,7 +3,7 @@ const cors=require('cors');
 const app=express();
 const {schema}=require("./type");
 const {transporter}=require("./sendMail");
-const {User}=require("./db/user"); // importing the database mongoose model
+const {User}=require("../db/user"); // importing the database mongoose model
 const jwt=require('jsonwebtoken');
 app.use(express.json());
 app.use(cors());
