@@ -1,10 +1,18 @@
+
 {
     "version": 2,
     "builds": [
-      { "src": "/backend/validate.js", "use": "@vercel/node" }
+      {
+        "src": "./validate.js",
+        "use": "@vercel/node"
+      }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "/backend/validate.js" }
+      
+      {
+        "src": "/(.*)",
+        "dest": "/"
+      }
     ]
   }
   
