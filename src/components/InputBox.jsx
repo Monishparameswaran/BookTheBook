@@ -93,7 +93,9 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
                <button className="p-2 pl-6 pr-6 rounded-3xl bg-white border-red-solid 
                text-rose-800 text-lg font-sans font-medium hover:bg-gray-100 hover: border-rose-600 hover:border-2">SignUp / LogIn</button>
                </Link>} 
-               {username && <div className="mt-3 hover:cursor-pointer drop" onClick={()=>{setCanDrop(!canDrop)}}>Welcome {username} !
+               {username && <div className="mt-3 hover:cursor-pointer drop" onClick={()=>{setCanDrop(!canDrop)}}>
+                <img src="" alt="" />
+                Welcome {username} !
                {canDrop && <DropDownUser setUserName={setUserName}></DropDownUser>}
                </div>
                  

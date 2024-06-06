@@ -152,7 +152,7 @@ export default function SignUp(){
                     <div className="mt-16">
                     <div className="ml-6">Enter OTP</div>
                     <div className="m-6"><input type="text" className="w-2/3 p-4 rounded-xl border border-gray-500 hover:border-gray-300 font-light" placeholder="6-Digit-OTP" onBlur={(e)=>{setOtpData(e.target.value);}}/></div>
-                    {otpMatches && <div className="m-5 text-green-600">OTP validation Success,Please Login to Continue...</div> }
+                    {otpMatches && <div className="m-5 text-green-600">OTP validation Success,Redirecting,..Please Login to Continue...</div> }
                     {invalidOTP && <div className="m-5 text-red-600">Invalid OTP !</div> }
                     <button className="bg-rose-500 p-4 ml-6 rounded-xl w-1/3  text-white hover:bg-rose-700" onClick={()=>{verifyOTP()}} >Verify OTP</button>
                     <button className="bg-slate-100 p-4 ml-6 rounded-xl w-1/3  text-black border-black hover:bg-slate-200" onClick={()=>{sendOTP()}}>Resend OTP</button>

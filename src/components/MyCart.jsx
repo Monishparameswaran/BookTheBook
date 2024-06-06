@@ -2,12 +2,13 @@ import { Fragment, useState,useEffect } from "react";
 import IncrementAndDecrementer from "./IncrementAndDecrementer";
 import { Link } from "react-router-dom";
 import PurchasePopUp from "./PurchasePopUp";
+import BuyNowButton from "./BuyNowButton";
 export default function MyCart(){
     const [content,setContent]=useState([]);
-    const [currentPrice,setCurrentPrice]=useState(0);
-    const [totalPrice,setTotalPrice]=useState(0);
-    const [totalItems,setTotalItems]=useState(0);
-    const [clicked,setClicked]=useState(false);
+    const [currentPrice,setCurrentPrice]=useState(1);
+    const [totalPrice,setTotalPrice]=useState(1);
+    const [totalItems,setTotalItems]=useState(1);
+    const [discount,setDiscount]=useState(0);
     const [PopUp,setPopUp]=useState(false);
     useEffect(()=>{
         const data=JSON.parse(localStorage.getItem("cart"));
@@ -34,11 +35,8 @@ export default function MyCart(){
                      </div>
                      {(obj.price)?
                        <div className="flex flex-row justify-between mt-4">
-                       <IncrementAndDecrementer currentPrice={currentPrice} currentItem={totalItems} totalPrice={totalPrice} setCurrentPrice={setCurrentPrice} setCurrentItem={setTotalItems} setTotalPrice={setTotalPrice} clicked={clicked} setClicked={setClicked} ></IncrementAndDecrementer>
-                       <div className="inline ml-2">
-                      <button className="p-3 pl-6 pr-5 bg-rose-500 text-white hover:bg-rose-700 mt-2" onClick={()=>{if(obj && obj.price){
-                       setCurrentPrice(obj.price);setTotalItems(totalItems+1);setClicked(true);
-                   }}}>Buy Now</button></div>
+                       <IncrementAndDecrementer currentPrice={currentPrice} currentItem={totalItems} totalPrice={totalPrice} setCurrentPrice={setCurrentPrice} setCurrentItem={setTotalItems} setTotalPrice={setTotalPrice} setDiscount={setDiscount} discount={discount} obj={obj}></IncrementAndDecrementer>
+                      
                    </div>
                      : <div className="bg-black text-white p-3 mt-6 ">Out of Stock</div>
                       }
@@ -59,7 +57,7 @@ export default function MyCart(){
                 <div className="bg-blue-400 h-32 w-32 ml-14 mr-24 shadow-2xl absolute " >
                <img src="../src/assets/Yellow and Pink Gradient Modern Technology Logo.png" alt=""/>
            </div>
-           <div className="bg-white font-bold text-2xl p-3 align-center absolute ml-48 mt-20 rounded-xl underline">
+           <div className="bg-white font-bold text-2xl p-3 align-center absolute ml-48 mt-20 rounded-xl underline underline-offset-8">
                My Book Shelf
            </div>
                </div>
@@ -81,9 +79,9 @@ export default function MyCart(){
                   <div className="text-lg font-small m-4">Total Books: <span className="ml-32 ">{totalItems}</span></div>
                   <div className="text-lg font-small m-4">Current Price: <span className="ml-24">{'\u20B9'}{currentPrice.toFixed(2)}</span></div>
                   <div className="text-lg font-small m-4">Total Price: <span className="ml-28">{'\u20B9'}{totalPrice.toFixed(2)}</span></div>
-                  <div className="text-lg font-small m-4">Discount: <span className="ml-32">{'\u20B9'}{totalPrice.toFixed(2)}</span></div>
+                  <div className="text-lg font-small m-4 text-green-700"> Discount: <span className="ml-32 text-green-700">{'- '}{'\u20B9'}{discount.toFixed(2)}</span></div>
                   <hr className="border-1 border-rose-900" />
-                  <div className="text-lg font-small m-4">You Pay:  <span className="ml-32">{'\u20B9'}{totalPrice.toFixed(2)}</span></div>
+                  <div className="text-lg font-small m-4">You Pay:  <span className="ml-32">{'\u20B9'}{totalPrice.toFixed(2)-discount.toFixed(2)}</span></div>
                   <hr className="border-1 border-rose-900" />
                   <div>
                     <button className=" mt-8 p-4 pl-16 pr-16 bg-yellow-400 text-black font-semibold " onClick={()=>{setPopUp(true)}}>Place Order</button>

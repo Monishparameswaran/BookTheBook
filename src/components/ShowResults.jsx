@@ -6,6 +6,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useMyCart from "./useMyCart";
+import AddToCartButton from "./AddToCartButton";
 function LoadScreen(){
     
     return(
@@ -20,6 +21,7 @@ export default function ShowResults({content,startIndex,setStartIndex,setContent
     const [isLoading,setLoading]=useState(true);
     const [addProduct,removeProduct]=useMyCart();
     const location=useLocation();
+    
     const searchParams=new URLSearchParams(location.search);
     const inputData=searchParams.get('input'); // i m getting data from the URL about the fetch data
 
@@ -89,14 +91,16 @@ export default function ShowResults({content,startIndex,setStartIndex,setContent
            <p className="w-9/12 max-h-32 overflow-scroll">
                {data.description}
            </p>
-           <div className="mt-4 mb-4">
+           <div className="mt-4 mb-4 flex flex-row">
             <Link to={`/bookthebook?id=${data.id}`}>
                 <button className="bg-bg-rose-500 p-3 pl-4 pr-4 text-white rounded-full bg-rose-600 hover:text-white hover:bg-rose-800 hover:duration-700">Click to Explore More  &gt;&gt;</button>
             </Link>
+            <div className="ml-64 ">
+           
+           <AddToCartButton addProduct={addProduct} data={data}></AddToCartButton>
            </div>
-           <div>
-            <button className="bg-black p-5 rounded-xl ml-8 text-white font-medium" onClick={()=>{addProduct(JSON.stringify(data));console.log(data);}}>Add to Cart</button>
            </div>
+          
            </div>
        </div>
 </div>)
