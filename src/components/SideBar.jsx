@@ -21,7 +21,7 @@ export function SideBar({setPickData}){
         
     ));
     return (
-        <div className="h-svh w-56 bg-rose-300 -mt-48  shadow-2xl">
+        <div className="mb-0 w-56 bg-rose-300 -mt-48  shadow-2xl">
             <div className="flex flex-col justify-between items-center mt-8">
             {listItems}
             <Link to="/mycart">

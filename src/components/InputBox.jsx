@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import TopicPicks from "./TopicPicks";
 import { SideBar } from "./SideBar";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import DropDownUser from "./DropdownUser";
 export default function InputBox({content,setContent,autocomplete,setAutoComplete,setIsShowRecommendation,startIndex,setStartIndex,setSearchContent}){
     const [fieldData,setFieldData]=useState("");// this temperarily stores the  input box data
@@ -18,7 +19,7 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
     console.log(startIndex+"from effect");
      // the following is the debouncing logic which call the function at  a delay if it encounters another function call within that time the timeout is reset 
 
-     
+     const navigate=useNavigate();
     const useDebounce=(e)=>{
         clearTimeout(timeout);
         timeout=setTimeout(()=>{handleChange(e)},300);
@@ -69,7 +70,10 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
             <div className="bg-blue-400 h-32 w-32 -ml-10 mr-24 shadow-2xl" >
                 <img src="../src/assets/Yellow and Pink Gradient Modern Technology Logo.png" alt="" onClick={()=>{}}/>
             </div>
+            
             <div className="w-1/2 flex ">
+
+              
                 <input type="text" className="h-11 text-lg p-5  bg-grey mb-1 ml-4 w-full rounded-lg" placeholder="Search 130+ Million books" onChange={useDebounce}/>
                 
                 {/* */}
@@ -93,9 +97,12 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
                <button className="p-2 pl-6 pr-6 rounded-3xl bg-white border-red-solid 
                text-rose-800 text-lg font-sans font-medium hover:bg-gray-100 hover: border-rose-600 hover:border-2">SignUp / LogIn</button>
                </Link>} 
-               {username && <div className="mt-3 hover:cursor-pointer drop" onClick={()=>{setCanDrop(!canDrop)}}>
-                <img src="" alt="" />
-                Welcome {username} !
+               {username && <div className="-mt-0 hover:cursor-pointer drop" onClick={()=>{setCanDrop(!canDrop)}}>
+                <div className="h-12 w-10 ml-5">
+                <img src="src/assets/user(1).png"  alt="" />
+                </div>
+               
+                <span className="bg-white pl-3 pr-3 rounded-lg pt-1 pb-1 text-rose-700 text-1xl">{username}</span>
                {canDrop && <DropDownUser setUserName={setUserName}></DropDownUser>}
                </div>
                  
@@ -118,7 +125,7 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
              
             <div className="ml-72  w-1/2 h-48 overflow-y-auto ">
            <SearchResults data={autocomplete} setSearchContent={setSearchContent}></SearchResults> 
-             <div className="ml-72 mt-24 italic  text-lg">"Unlock the universe with the turn of a page."</div>
+             <div className="ml-72 mt-24 italic  text-lg">"Unlock the universe with the turn of a page." <span className="italic text-lg text-bold"> - Monish </span></div>
            </div>
            </div>
             {/* <div className="mt-0 bg-black" >

@@ -15,6 +15,7 @@ export default function About(){
                 <div className="ml-0">  <h1 className="text-6xl text-black ml-2">Searching Made Easy</h1></div>
                 <div className="bg-rose-100 lack h-96 rounded-lg ml-12 mt-8 w-full">
                     <h2 className="p-8 text-2xl ">Welcome Monks!!</h2>
+                    <p className="ml-8 italic">You are a Monk: Valued beyond measure, driven with purpose</p>
                     <p className="p-8 text-lg " >Book The Book: A platform to search for books worldwide, find them, read them, and mediate on the book. If monks want to own an amazing copy of what you've read, just Book the Book</p>
                    
                     <Link to="/home">
