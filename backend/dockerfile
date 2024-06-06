@@ -1,0 +1,7 @@
+FROM node:18.20.3-alpine3.20 as firstStage
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["node","validate.js"]
+
+EXPOSE 3000

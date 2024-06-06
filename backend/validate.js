@@ -58,7 +58,7 @@ app.post("/signin",inputValidateMiddlewareSignin,async function(req,res){
     try{
         const exist=await User.findOne({fullname,email,password});
         if(exist){
-            res.status(401).json({status: "401",msg: "User already Exist"});
+            res.status(401).json({status: "401",msg: "User already Exist"});    
             return;
         }
         const newUser=await User.create({fullname,email,password});
