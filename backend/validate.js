@@ -7,6 +7,7 @@ const {User}=require("./user"); // importing the database mongoose model
 const jwt=require('jsonwebtoken');
 app.use(express.json());
 app.use(cors());
+app.options('*', cors());
 let store={};
 const JWT_SECRET="monishParameswara124"
 app.get("/home",function(req,res){
