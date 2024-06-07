@@ -4,7 +4,7 @@ import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 export default function SignUp(){
 
-    const privateIP="172.31.21.75";
+    const privateIP="backend";
     const [fullName,setFullName]=useState("");
     const [password,setPassword]=useState("");
     const [email,setEmail]=useState("");
