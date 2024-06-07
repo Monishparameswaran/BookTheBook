@@ -1,7 +1,10 @@
-    FROM node:18.20.3-alpine3.20
-    WORKDIR /app
-    COPY . .
-    RUN npm install
-    CMD ["npm","run","dev","--","--host"]
+FROM node:18.20.3-alpine3.20 AS build
+WORKDIR /app
+COPY . .
+RUN npm install && \
+    npm run build 
 
-    EXPOSE 5173
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

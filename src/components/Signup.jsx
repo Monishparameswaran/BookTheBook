@@ -3,6 +3,8 @@ import { useState ,useEffect} from "react";
 import axios from "axios";
 import { redirect, useNavigate } from "react-router-dom";
 export default function SignUp(){
+
+    const privateIP="172.31.21.75";
     const [fullName,setFullName]=useState("");
     const [password,setPassword]=useState("");
     const [email,setEmail]=useState("");
@@ -23,7 +25,7 @@ export default function SignUp(){
 
         function sendOTP(){
             const headerMail={email: email}
-            axios.post("http://localhost:3000/sendotp",null,{headers: headerMail})
+            axios.post(`http://${privateIP}:3000/sendotp`,null,{headers: headerMail})
                     .then((resp)=>{
                         setServerOTP(resp.data.otp);
                     })
@@ -36,7 +38,7 @@ export default function SignUp(){
                 email: email,
                 password: password
             }
-            const url="http://localhost:3000/signin"
+            const url=`http://${privateIP}:3000/signin`
             axios.post(url,null,{headers: header}).then(    // takes URL,BODY,HEADER as an argument
             
                 (obj)=>{setUserExist(false);
@@ -68,7 +70,7 @@ export default function SignUp(){
             }
         }
         function handleLogIn(e){
-            const url="http://localhost:3000/login"; //  this our backend url that accepts get request
+            const url=`http://${privateIP}:3000/login`; //  this our backend url that accepts get request
             const header={
                 email: email,
                 password: password

@@ -93,7 +93,7 @@ export default function InputBox({content,setContent,autocomplete,setAutoComplet
              
             </div>
             <div className="bg-rose-300 p-4 text-lg">
-              { !username && <Link to="http://localhost:5173/signup">
+              { !username && <Link to="/signup">
                <button className="p-2 pl-6 pr-6 rounded-3xl bg-white border-red-solid 
                text-rose-800 text-lg font-sans font-medium hover:bg-gray-100 hover: border-rose-600 hover:border-2">SignUp / LogIn</button>
                </Link>} 
